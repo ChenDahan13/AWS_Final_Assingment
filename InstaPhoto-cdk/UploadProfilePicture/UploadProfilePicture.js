@@ -2,7 +2,7 @@ const AWS = require('aws-sdk');
 const s3 = new AWS.S3();
 const dynamo = new AWS.DynamoDB.DocumentClient();
 const TABLE_NAME = "users";
-const BUCKET_NAME = "profilePictureBucket";
+const BUCKET_NAME = "hsppbucket";
 
 exports.handler = async (event) => {
     const { email, profilePicture } = JSON.parse(event.body);

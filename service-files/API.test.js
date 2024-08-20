@@ -1,5 +1,4 @@
 const axios = require('axios');
-const e = require('express');
 
 const apiUrl = 'https://v9f59iq2nl.execute-api.us-east-1.amazonaws.com/prod';
 

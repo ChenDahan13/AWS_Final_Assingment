@@ -1,6 +1,6 @@
 const AWS = require('aws-sdk');
 const s3 = new AWS.S3();
-const BUCKET_NAME = "profilePictureBucket";
+const BUCKET_NAME = "hsppbucket";
 
 exports.handler = async (event) => {
     const { email } = JSON.parse(event.body);
