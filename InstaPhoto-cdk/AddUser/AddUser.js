@@ -5,6 +5,10 @@ const TABLE_NAME = "users";
 exports.handler = async (event) => {
     const { email, password, phone } = JSON.parse(event.body);
 
+    console.log("Adding user with email: ", email);
+    console.log("Phone: ", phone);
+    console.log("Password: ", password);
+
     // Validate that the required fields are provided
     if (!email || !password || !phone) {
         return {
