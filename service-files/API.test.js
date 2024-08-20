@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const apiUrl = 'https://v9f59iq2nl.execute-api.us-east-1.amazonaws.com/prod';
+const apiUrl = 'https://rhmf5xamtd.execute-api.us-east-1.amazonaws.com/prod/';
 
 describe('InstaPhoto API', () => {
     

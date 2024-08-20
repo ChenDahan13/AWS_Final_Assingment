@@ -1,4 +1,4 @@
-const API_GATEWAY_URL = "https://v9f59iq2nl.execute-api.us-east-1.amazonaws.com/prod/";
+const API_GATEWAY_URL = "https://rhmf5xamtd.execute-api.us-east-1.amazonaws.com/prod/";
 
 module.exports = {
     GetUserByIdFunction,
