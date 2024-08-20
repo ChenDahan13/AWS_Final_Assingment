@@ -9,7 +9,7 @@ exports.handler = async (event) => {
     if (!email_id) {
         return {
             statusCode: 400,
-            body: JSON.stringify({ error: 'Email is required' }),
+            body: JSON.stringify({ error: 'Email is required' }), //ok
         };
     }
 
