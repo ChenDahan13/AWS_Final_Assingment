@@ -16,6 +16,7 @@ exports.handler = async (event) => {
     const params = {
         TableName: TABLE_NAME,
         Key: { email: email_id },
+        ReturnValues: 'ALL_OLD',
     };
 
     try {

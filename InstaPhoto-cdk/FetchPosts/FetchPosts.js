@@ -1,9 +1,10 @@
 const AWS = require('aws-sdk');
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
+const TABLE_NAME = "posts";
 
 exports.handler = async () => {
     const params = {
-        TableName: 'Posts', // Replace with your DynamoDB table name
+        TableName: TABLE_NAME, 
     };
 
     try {

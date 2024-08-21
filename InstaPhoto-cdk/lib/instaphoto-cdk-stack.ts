@@ -14,11 +14,11 @@ export class InstaPhotoCdkStack extends cdk.Stack {
     super(scope, id, props);
 
     // Students TODO Account Details: Change to your account id
-    const labRole = iam.Role.fromRoleArn(this, 'Role', "arn:aws:iam::648440372507:role/LabRole", { mutable: false });
+    const labRole = iam.Role.fromRoleArn(this, 'Role', "arn:aws:iam::771045402253:role/LabRole", { mutable: false });
 
     // Students TODO Account Details: Change the vpcId to the VPC ID of your existing VPC
     const vpc = ec2.Vpc.fromLookup(this, 'VPC', {
-      vpcId: 'vpc-0db6a0e723bdca343',
+      vpcId: 'vpc-09abe69b266555013',
     });
 
     const table = this.createDynamoDBTable(labRole);
@@ -224,7 +224,7 @@ private genPreSignedUrl(tableName: string, labRole: iam.IRole, profilePictureBuc
 
   private createProfilePictureBucket(labRole: iam.IRole) {
     const profilePictureBucket = new s3.Bucket(this, 'ProfilePictureBucket', {
-      bucketName: 'hsppbucket1',
+      bucketName: 'hsppbucket',
       removalPolicy: cdk.RemovalPolicy.DESTROY,
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL, // Ensures security by blocking public access
     });
@@ -245,7 +245,7 @@ private genPreSignedUrl(tableName: string, labRole: iam.IRole, profilePictureBuc
 
   private deployTheApplicationArtifactToS3Bucket(labRole: iam.IRole) {
     const bucket = new s3.Bucket(this, 'DeploymentArtifact', {
-      bucketName: 'hsbdartifact1',
+      bucketName: 'hsbdartifact',
       removalPolicy: cdk.RemovalPolicy.RETAIN_ON_UPDATE_OR_DELETE,
       websiteIndexDocument: 'index.html',
       objectOwnership: s3.ObjectOwnership.BUCKET_OWNER_PREFERRED,
