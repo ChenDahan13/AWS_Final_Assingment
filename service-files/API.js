@@ -1,14 +1,6 @@
-const API_GATEWAY_URL = "https://v9f59iq2nl.execute-api.us-east-1.amazonaws.com/prod/";
+const API_GATEWAY_URL = "https://5vfiseuir2.execute-api.us-east-1.amazonaws.com/prod/";
 
-module.exports = {
-    GetUserByIdFunction,
-    AddUserFunction,
-    DeleteUserFunction,
-    UploadProfilePictureFunction,
-    GeneratePresignedUrlFunction,
-};
-
-async function GetUserByIdFunction(email) {
+export async function GetUserByIdFunction(email) {
     try {
         const response = await fetch(`${API_GATEWAY_URL}/GetUserById/${email}`, {
             method: 'GET',
@@ -29,7 +21,7 @@ async function GetUserByIdFunction(email) {
     }
 }
 
-async function AddUserFunction(email, password, phone) {
+export async function AddUserFunction(email, password, phone) {
     try {
         const response = await fetch(`${API_GATEWAY_URL}/AddUser/${email}`, {
             method: 'POST',
@@ -51,7 +43,7 @@ async function AddUserFunction(email, password, phone) {
     }
 }
 
-async function DeleteUserFunction(email) {
+export async function DeleteUserFunction(email) {
     try {
         const response = await fetch(`${API_GATEWAY_URL}/DeleteUser/${email}`, {
             method: 'DELETE',
@@ -72,7 +64,7 @@ async function DeleteUserFunction(email) {
     }
 }
 
-async function UploadProfilePictureFunction(email, profilePicture) {
+export async function UploadProfilePictureFunction(email, profilePicture) {
     try {
         const response = await fetch(`${API_GATEWAY_URL}/UploadProfilePicture`, {
             method: 'POST',
@@ -94,7 +86,7 @@ async function UploadProfilePictureFunction(email, profilePicture) {
     }
 }
 
-async function GeneratePresignedUrlFunction(email) {
+export async function GeneratePresignedUrlFunction(email) {
     try {
         const response = await fetch(`${API_GATEWAY_URL}/GenPresignedURL`, {
             method: 'POST',
@@ -116,7 +108,7 @@ async function GeneratePresignedUrlFunction(email) {
     }
 }
 
-async function fetchPostsTable() {
+export async function fetchPostsTable() {
     try {
         const response = await fetch(`${API_GATEWAY_URL}/FetchPosts`, {
             method: 'GET',
@@ -137,7 +129,7 @@ async function fetchPostsTable() {
     }
 }
 
-async function uploadPostFunction(post) {
+export async function uploadPostFunction(post) {
     try {
         const response = await fetch(`${API_GATEWAY_URL}/UploadPost`, {
             method: 'POST',
@@ -159,7 +151,7 @@ async function uploadPostFunction(post) {
     }
 }
 
-async function presentFrontPage() {
+export async function presentFrontPage() {
     try {
         const response = await fetch(`${API_GATEWAY_URL}/PresentFrontPage`, {
             method: 'GET',

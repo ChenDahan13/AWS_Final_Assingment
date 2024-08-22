@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const apiUrl = 'https://mxv1edwira.execute-api.us-east-1.amazonaws.com/prod/';
+const apiUrl = 'https://5vfiseuir2.execute-api.us-east-1.amazonaws.com/prod/';
 
 describe('InstaPhoto API', () => {
     
@@ -102,6 +102,46 @@ describe('InstaPhoto API', () => {
     });
 });
 
+describe('UploadProfilePicture API', () => {
+
+    it('should add new user', async () => {
+        const response = await axios.post(`${apiUrl}/AddUser`, {
+            email: 'test@example.com',
+            password: 'password123',
+            phone: '1234567890'
+        });
+
+        expect(response.status).toBe(201);
+        expect(response.data.message).toBe('User created successfully');
+    });
+
+
+    it('should upload profile picture successfully', async () => {
+        const response = await axios.post(`${apiUrl}/UploadProfilePicture`, {
+            email: 'test@example.com',
+            profilePicture: 'base64-encoded-image'
+        });
+
+        expect(response.status).toBe(200);
+        expect(response.data.message).toBe('Profile picture uploaded and user record updated successfully');
+    });
+
+    it('should get user details with profile picture', async () => {
+        const response = await axios.get(`${apiUrl}/GetUserById/test@example.com`);
+
+        expect(response.status).toBe(200);
+        expect(response.data.hasProfilePicture).toBe(true);
+        expect(response.data.profilePictureUrl).toBe('https://hsppbucket.s3.amazonaws.com/profile-pictures/test@example.com.jpg');
+    });
+
+    it('should delete user', async () => {
+        const response = await axios.delete(`${apiUrl}/DeleteUser/test@example.com`);
+
+        expect(response.status).toBe(200);
+        expect(response.data.message).toBe('User deleted successfully');
+    });
+});
+
 describe('FetchPosts API', () => {
 
     it('should return all posts successfully', async () => {
@@ -128,6 +168,8 @@ describe('FetchPosts API', () => {
             expect(error.response.data.error).toBe('Could not fetch posts');
         }
     });
+
+
 });
 
 describe('UploadPost API', () => {
