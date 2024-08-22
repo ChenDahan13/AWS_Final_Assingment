@@ -6,8 +6,13 @@ document.querySelector('form').addEventListener('submit', async function(e) {
   const email = document.getElementById('mail').value;
   const password = document.getElementById('password').value;
 
+  console.log('email:', email);
+  console.log('password:', password);
+
   const result = await API.GetUserByIdFunction(email);
-  if (result.Item.key == email && result.Item.password == password) {
+
+  console.log('result:', result);
+  if (result.email == email && result.password == password) {
     window.location.href = 'posts_page.html';
   } else {
     alert('Invalid username or password');

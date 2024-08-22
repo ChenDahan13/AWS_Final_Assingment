@@ -1,4 +1,4 @@
-const API_GATEWAY_URL = "https://8gov5049d5.execute-api.us-east-1.amazonaws.com/prod/";
+const API_GATEWAY_URL = "https://m5muhkb4kc.execute-api.us-east-1.amazonaws.com/prod/";
 
 export async function GetUserByIdFunction(email) {
     try {
@@ -23,7 +23,7 @@ export async function GetUserByIdFunction(email) {
 
 export async function AddUserFunction(email, password, phone) {
     try {
-        const response = await fetch(`${API_GATEWAY_URL}/AddUser/${email}`, {
+        const response = await fetch(`${API_GATEWAY_URL}/AddUser`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

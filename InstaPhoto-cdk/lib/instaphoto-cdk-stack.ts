@@ -191,6 +191,11 @@ private genPreSignedUrl(tableName: string, labRole: iam.IRole, profilePictureBuc
     const api = new apigateway.RestApi(this, 'InstaPhotoApi', {
       restApiName: 'InstaPhoto Service',
       description: 'This service Get User By Id',
+      defaultCorsPreflightOptions: {
+        allowOrigins: apigateway.Cors.ALL_ORIGINS,
+        allowMethods: apigateway.Cors.ALL_METHODS,
+        allowHeaders: apigateway.Cors.DEFAULT_HEADERS,
+      },
     });
 
     const getUserById = api.root.addResource('GetUserById');

@@ -9,6 +9,11 @@ exports.handler = async (event) => {
     if (!email || !password || !phone) {
         return {
             statusCode: 400,
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, DELETE",
+                "Access-Control-Allow-Headers": "Content-Type, X-Api-Key"
+            },
             body: JSON.stringify({ error: 'Email, password, and phone are required' }),
         };
     }
@@ -23,6 +28,11 @@ exports.handler = async (event) => {
     if (existingUser.Item) {
         return {
             statusCode: 409, // Conflict
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, DELETE",
+                "Access-Control-Allow-Headers": "Content-Type, X-Api-Key"
+            },
             body: JSON.stringify({ error: 'User already exists' }),
         };
     }
@@ -43,12 +53,22 @@ exports.handler = async (event) => {
         await dynamo.put(params).promise();
         return {
             statusCode: 201,
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, DELETE",
+                "Access-Control-Allow-Headers": "Content-Type, X-Api-Key"
+            },
             body: JSON.stringify({ message: 'User created successfully' }),
         };
     } catch (error) {
         console.error("Error creating user: ", error);
         return {
             statusCode: 500,
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, DELETE",
+                "Access-Control-Allow-Headers": "Content-Type, X-Api-Key"
+            },
             body: JSON.stringify({ error: 'Could not create user' }),
         };
     }

@@ -26,6 +26,11 @@ exports.handler = async (event) => {
         if (result.Item) {
             return {
                 statusCode: 200,
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, DELETE",
+                    "Access-Control-Allow-Headers": "Content-Type, X-Api-Key"
+                },
                 body: JSON.stringify(result.Item),
             };
         } else {
