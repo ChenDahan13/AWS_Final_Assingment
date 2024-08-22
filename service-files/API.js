@@ -1,4 +1,4 @@
-const API_GATEWAY_URL = "https://5vfiseuir2.execute-api.us-east-1.amazonaws.com/prod/";
+const API_GATEWAY_URL = "https://8gov5049d5.execute-api.us-east-1.amazonaws.com/prod/";
 
 export async function GetUserByIdFunction(email) {
     try {

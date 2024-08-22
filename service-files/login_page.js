@@ -1,4 +1,4 @@
-const API = require('./API.js');
+import * as API from './API.js';
 
 document.querySelector('form').addEventListener('submit', async function(e) {
   e.preventDefault();
