@@ -232,6 +232,12 @@ private genPreSignedUrl(tableName: string, labRole: iam.IRole, profilePictureBuc
       bucketName: 'hsppbucket',
       removalPolicy: cdk.RemovalPolicy.DESTROY,
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL, // Ensures security by blocking public access
+      cors: [
+        {
+          allowedOrigins: ['*'],
+          allowedMethods: [s3.HttpMethods.GET, s3.HttpMethods.PUT, s3.HttpMethods.POST, s3.HttpMethods.DELETE, s3.HttpMethods.HEAD],
+        },
+      ],
     });
 
     profilePictureBucket.grantReadWrite(labRole);
@@ -251,7 +257,7 @@ private genPreSignedUrl(tableName: string, labRole: iam.IRole, profilePictureBuc
   private deployTheApplicationArtifactToS3Bucket(labRole: iam.IRole) {
     const bucket = new s3.Bucket(this, 'DeploymentArtifact', {
       bucketName: 'hsbdartifact2',
-      removalPolicy: cdk.RemovalPolicy.DESTROY,
+      removalPolicy: cdk.RemovalPolicy.RETAIN_ON_UPDATE_OR_DELETE,
       websiteIndexDocument: 'index.html',
       objectOwnership: s3.ObjectOwnership.BUCKET_OWNER_PREFERRED,
       

@@ -9,6 +9,11 @@ exports.handler = async (event) => {
     if (!email) {
         return {
             statusCode: 400,
+            headers: {
+                "Access-Control-Allow-Origin": "*", // Allow requests from any origin
+                "Access-Control-Allow-Headers": "*", // Allow any headers
+                "Access-Control-Allow-Methods": "*", // Allow any methods
+            },
             body: JSON.stringify({ error: 'Email is required' }),
         };
     }
@@ -23,6 +28,11 @@ exports.handler = async (event) => {
 
     return {
         statusCode: 200,
+        headers: {
+            "Access-Control-Allow-Origin": "*", // Allow requests from any origin
+            "Access-Control-Allow-Headers": "*", // Allow any headers
+            "Access-Control-Allow-Methods": "*", // Allow any methods
+        },
         body: JSON.stringify({ preSignedUrl: url }),
     };
 };

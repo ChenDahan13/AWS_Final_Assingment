@@ -11,6 +11,11 @@ exports.handler = async (event) => {
     if (!email || !profilePicture) {
         return {
             statusCode: 400,
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, DELETE",
+                "Access-Control-Allow-Headers": "Content-Type, X-Api-Key"
+            },
             body: JSON.stringify({ error: 'Email and profile picture are required' }),
         };
     }
@@ -25,6 +30,11 @@ exports.handler = async (event) => {
     if (!user.Item) {
         return {
             statusCode: 404,
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, DELETE",
+                "Access-Control-Allow-Headers": "Content-Type, X-Api-Key"
+            },
             body: JSON.stringify({ error: 'User not found' }),
         };
     }
@@ -59,12 +69,22 @@ exports.handler = async (event) => {
 
         return {
             statusCode: 200,
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, DELETE",
+                "Access-Control-Allow-Headers": "Content-Type, X-Api-Key"
+            },
             body: JSON.stringify({ message: 'Profile picture uploaded and user record updated successfully' }),
         };
     } catch (error) {
         console.error("Error uploading profile picture: ", error);
         return {
             statusCode: 500,
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, DELETE",
+                "Access-Control-Allow-Headers": "Content-Type, X-Api-Key"
+            },
             body: JSON.stringify({ error: 'Could not upload profile picture' }),
         };
     }

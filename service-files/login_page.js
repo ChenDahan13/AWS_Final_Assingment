@@ -13,6 +13,7 @@ document.querySelector('form').addEventListener('submit', async function(e) {
 
   console.log('result:', result);
   if (result.email == email && result.password == password) {
+    sessionStorage.setItem('email_of_user', email);
     window.location.href = 'posts_page.html';
   } else {
     alert('Invalid username or password');
