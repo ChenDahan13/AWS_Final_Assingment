@@ -250,8 +250,8 @@ private genPreSignedUrl(tableName: string, labRole: iam.IRole, profilePictureBuc
 
   private deployTheApplicationArtifactToS3Bucket(labRole: iam.IRole) {
     const bucket = new s3.Bucket(this, 'DeploymentArtifact', {
-      bucketName: 'hsbdartifact',
-      removalPolicy: cdk.RemovalPolicy.RETAIN_ON_UPDATE_OR_DELETE,
+      bucketName: 'hsbdartifact2',
+      removalPolicy: cdk.RemovalPolicy.DESTROY,
       websiteIndexDocument: 'index.html',
       objectOwnership: s3.ObjectOwnership.BUCKET_OWNER_PREFERRED,
       
