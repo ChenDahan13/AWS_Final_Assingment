@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InstaPhoto - Upload Post</title>
+    <!-- IconScout CDN -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="./upload_post.css">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <h2 class="logo">
+                InstaPhoto
+            </h2>
+            <div class="actions">
+                <button id="returnButton" class="btn btn-primary">Return to Posts</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-------------------------------- MAIN ----------------------------------->
+    <main>
+        <div class="container">
+            <form id="uploadPostForm">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" name="location" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="timePosted">Time Posted</label>
+                    <input type="text" id="timePosted" name="timePosted" readonly>
+                </div>
+
+                <div class="input-group">
+                    <label for="photo">Photo</label>
+                    <input type="file" id="photo" name="photo" accept="image/*" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="caption">Caption</label>
+                    <textarea id="caption" name="caption" rows="3" required></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label for="tags">Tags</label>
+                    <input type="text" id="tags" name="tags" placeholder="Enter tags separated by commas">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Upload Post</button>
+            </form>
+        </div>
+    </main>
+
+    <script src="./upload_post.js"></script>
+</body>
+</html>
