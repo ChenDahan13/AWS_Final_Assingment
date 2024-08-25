@@ -279,6 +279,54 @@
 
 import * as API from './API.js';
 
+document.addEventListener('DOMContentLoaded', async function() {
+    try {
+        const posts = await API.fetchPostsTable();
+        const feedsContainer = document.getElementById('feeds');
+
+        posts.forEach(post => {
+            const postElement = createPostElement(post);
+            feedsContainer.appendChild(postElement);
+        });
+    } catch (error) {
+        console.error('Error fetching and displaying posts:', error);
+        alert('Failed to load posts. Please try again.');
+    }
+});
+
+function createPostElement(post) {
+    const postDiv = document.createElement('div');
+    postDiv.classList.add('post');
+
+    const email = document.createElement('p');
+    email.textContent = `Email: ${post.email}`;
+    
+    const location = document.createElement('p');
+    location.textContent = `Location: ${post.location}`;
+
+    const timePosted = document.createElement('p');
+    timePosted.textContent = `Posted on: ${post.timePosted}`;
+
+    const caption = document.createElement('p');
+    caption.textContent = post.caption;
+
+    const tags = document.createElement('p');
+    tags.textContent = `Tags: ${post.tags}`;
+
+    const img = document.createElement('img');
+    img.src = post.photoURL;
+    img.alt = 'Post Image';
+
+    postDiv.appendChild(email);
+    postDiv.appendChild(location);
+    postDiv.appendChild(timePosted);
+    postDiv.appendChild(caption);
+    postDiv.appendChild(tags);
+    postDiv.appendChild(img);
+
+    return postDiv;
+}
+
 document.getElementById('upload-profile-picture').addEventListener('change', async function() {
     
     const email_of_user = sessionStorage.getItem('email_of_user');
