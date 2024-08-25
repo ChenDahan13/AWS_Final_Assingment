@@ -19,12 +19,16 @@ body {
     color: var(--color-dark);
     background: var(--color-purple);
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .container {
     width: 80%;
-    margin: 0 auto;
-    padding-top: 2rem;
+    margin: 0 auto;   
 }
 
 nav {
@@ -40,6 +44,24 @@ nav .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%; /* Ensure it spans the full width */
+    padding: 0 1rem; /* Add some padding on the sides */
+}
+
+nav .logo {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-right: auto; /* Aligns to the left */
+}
+
+.actions {
+    margin-left: auto; /* Aligns to the right */
+    margin-right: 2rem; /* Moves the button slightly to the left */
+}
+
+.actions a {
+    text-decoration: none; /* Removes the underline */
+    color: var(--color-black); /* Ensures the color is consistent */
 }
 
 .btn {
@@ -52,6 +74,16 @@ nav .container {
     font-size: 0.9rem;
     background: var(--color-really-white);
     color: var(--color-black);
+    text-align: center;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    align-items: flex-end; /* Align form container to bottom */
+    justify-content: center;
+    padding-bottom: 2rem; /* Additional space at the bottom */
+    margin-top: 5rem; /* Avoid overlap with fixed navbar */
 }
 
 form {
@@ -61,6 +93,7 @@ form {
     box-shadow: 0 0 1rem var(--color-dark-purple);
     max-width: 600px;
     margin: 0 auto;
+    width: 100%;
 }
 
 .input-group {

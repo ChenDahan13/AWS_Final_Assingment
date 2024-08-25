@@ -17,7 +17,7 @@
                 InstaPhoto
             </h2>
             <div class="actions">
-                <button id="returnButton" class="btn btn-primary">Return to Posts</button>
+                <a id="returnButton" class="btn btn-primary" href="posts_page.html">Return To Posts</a>
             </div>
         </div>
     </nav>
@@ -26,11 +26,6 @@
     <main>
         <div class="container">
             <form id="uploadPostForm">
-                <div class="input-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" required>
-                </div>
-
                 <div class="input-group">
                     <label for="location">Location</label>
                     <input type="text" id="location" name="location" required>
@@ -61,6 +56,6 @@
         </div>
     </main>
 
-    <script src="./upload_post.js"></script>
+    <script type="module" src="./upload_post.js"></script>
 </body>
 </html>

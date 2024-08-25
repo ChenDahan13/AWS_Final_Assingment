@@ -6,13 +6,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const now = new Date().toLocaleString();
     timePostedInput.value = now;
 
+    const email = sessionStorage.getItem('email_of_user');
+
     // Handle form submission
     const form = document.getElementById('uploadPostForm');
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
 
         const post = {
-            username: form.username.value,
+            email: email,
             location: form.location.value,
             timePosted: timePostedInput.value,
             photo: form.photo.files[0], // File handling would require additional setup
@@ -23,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const result = await uploadPostFunction(post);
             alert('Post uploaded successfully!');
+            window.location.href = './posts_page.html';
         } catch (error) {
             alert('Failed to upload post. Please try again.');
         }
