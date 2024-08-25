@@ -4,10 +4,8 @@ const dynamo = new AWS.DynamoDB.DocumentClient();
 const TABLE_NAME = "users";
 const BUCKET_NAME = "hsppbucket";
 
-exports.handler = async (event) => {
-    const { email, profilePicture } = JSON.parse(event.body);
+function validateUserDetails(email, profilePicture) {
 
-    // Validate that the required fields are provided
     if (!email || !profilePicture) {
         return {
             statusCode: 400,
@@ -19,14 +17,18 @@ exports.handler = async (event) => {
             body: JSON.stringify({ error: 'Email and profile picture are required' }),
         };
     }
+}
+
+ async function checkUserExists(email) {
 
     // Check if the user exists in DynamoDB
     const userParams = {
         TableName: TABLE_NAME,
-        Key: { email: email },
+        Key: { email },
     };
 
     const user = await dynamo.get(userParams).promise();
+    
     if (!user.Item) {
         return {
             statusCode: 404,
@@ -38,6 +40,17 @@ exports.handler = async (event) => {
             body: JSON.stringify({ error: 'User not found' }),
         };
     }
+}
+
+
+exports.handler = async (event) => {
+
+    console.log('event: ', JSON.stringify(event));
+    const { email, profilePicture } = JSON.parse(event.body);
+
+    validateUserDetails(email, profilePicture);
+
+    await checkUserExists(email);
 
     // Decode the base64 image and upload it to S3
     const profilePictureKey = `profile-pictures/${email}.jpg`;
@@ -49,7 +62,8 @@ exports.handler = async (event) => {
         ContentEncoding: 'base64',
         ContentType: 'image/jpeg'
     };
-
+    
+    console.log('s3Params: ', JSON.stringify(s3Params));
     try {
         await s3.upload(s3Params).promise();
 

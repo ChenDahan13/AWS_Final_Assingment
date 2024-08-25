@@ -6,7 +6,7 @@ exports.handler = async (event) => {
     const requestBody = JSON.parse(event.body);
 
     // Destructure the necessary fields from the request body
-    const { postId, username, email, location, timePosted, imageUrl, caption } = requestBody;
+    const { postId, email, location, timePosted, imageUrl, caption } = requestBody;
     
     // Fetch the profile picture of the user from the S3 bucket
     const profilePicture = `https://hsppbucket.s3.amazonaws.com/${email}.jpg`;
@@ -16,7 +16,6 @@ exports.handler = async (event) => {
         TableName: 'posts', // Replace with your actual DynamoDB table name
         Item: {
             postId: postId || AWS.util.uuid.v4(), // Use provided postId or generate a UUID
-            username,
             email,
             location,
             timePosted,

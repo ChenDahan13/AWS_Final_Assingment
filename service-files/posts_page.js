@@ -340,19 +340,8 @@ document.getElementById('upload-profile-picture').addEventListener('change', asy
     }
 
     try {
-        // const presignedUrl = await API.GeneratePresignedUrlFunction(email_of_user);
-        // console.log('Presigned URL:', presignedUrl);
-
-        // const response = await fetch(presignedUrl, {
-        //     method: 'PUT',
-        //     body: profilePicture,
-        // });
-
-        // if (!response.ok) {
-        //     throw new Error(`HTTP error! status: ${response.status}`);
-        // }
-
-        const result = await API.UploadProfilePictureFunction(email_of_user, profilePicture);
+        const base64String = await convertToBase64(profilePicture);
+        const result = await API.UploadProfilePictureFunction(email_of_user, base64String);
         if (result.message === 'Profile picture uploaded and user record updated successfully') {
             alert('Profile picture uploaded successfully');
         } else {
@@ -363,4 +352,26 @@ document.getElementById('upload-profile-picture').addEventListener('change', asy
         console.error('Error uploading profile picture:', error);
         alert('Failed to upload profile picture. Please try again.');
     }
+
+    // show_profile_picture(email_of_user);
 });
+
+function convertToBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+
+        reader.onload = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = error => reject(error);
+    });
+}
+
+function show_profile_picture(email) {
+    const user_details = API.GetUserByIdFunction(email);
+    console.log('User has profile picture:', user_details.hasProfilePicture);
+    if(user_details.hasProfilePicture) {
+        user_presigned_url = API.GeneratePresignedUrlFunction(email);
+        console.log('Presigned URL:', user_presigned_url);
+        document.getElementById('profile-picture').src = user_presigned_url;
+    }
+}
